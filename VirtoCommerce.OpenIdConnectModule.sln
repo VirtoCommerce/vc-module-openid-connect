@@ -1,0 +1,63 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{30AF5779-46BC-4B15-801E-FF332F5102A1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtoCommerce.OpenIdConnectModule.Web", "src\VirtoCommerce.OpenIdConnectModule.Web\VirtoCommerce.OpenIdConnectModule.Web.csproj", "{0E6AEAA7-F56F-48CE-98F3-7BA3EE7DC9C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtoCommerce.OpenIdConnectModule.Data", "src\VirtoCommerce.OpenIdConnectModule.Data\VirtoCommerce.OpenIdConnectModule.Data.csproj", "{917B4D82-8306-4CAA-A87A-232DA194F620}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtoCommerce.OpenIdConnectModule.Core", "src\VirtoCommerce.OpenIdConnectModule.Core\VirtoCommerce.OpenIdConnectModule.Core.csproj", "{0B02E7CF-EFEE-4377-8881-33C817698AD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D1D91781-1599-41C8-BA2A-0CA4B299E531}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtoCommerce.OpenIdConnectModule.Tests", "tests\VirtoCommerce.OpenIdConnectModule.Tests\VirtoCommerce.OpenIdConnectModule.Tests.csproj", "{BBDD22A2-121B-487F-AF8D-0507BC657E08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{511C9D4F-4B48-4E46-9C85-B2C6791E5A11}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		LICENSE = LICENSE
+		module.ignore = module.ignore
+		README.md = README.md
+		VirtoCommerce.OpenIdConnectModule.sln.DotSettings = VirtoCommerce.OpenIdConnectModule.sln.DotSettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E6AEAA7-F56F-48CE-98F3-7BA3EE7DC9C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E6AEAA7-F56F-48CE-98F3-7BA3EE7DC9C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E6AEAA7-F56F-48CE-98F3-7BA3EE7DC9C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E6AEAA7-F56F-48CE-98F3-7BA3EE7DC9C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917B4D82-8306-4CAA-A87A-232DA194F620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917B4D82-8306-4CAA-A87A-232DA194F620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917B4D82-8306-4CAA-A87A-232DA194F620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917B4D82-8306-4CAA-A87A-232DA194F620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B02E7CF-EFEE-4377-8881-33C817698AD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B02E7CF-EFEE-4377-8881-33C817698AD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B02E7CF-EFEE-4377-8881-33C817698AD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B02E7CF-EFEE-4377-8881-33C817698AD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBDD22A2-121B-487F-AF8D-0507BC657E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBDD22A2-121B-487F-AF8D-0507BC657E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBDD22A2-121B-487F-AF8D-0507BC657E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBDD22A2-121B-487F-AF8D-0507BC657E08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0E6AEAA7-F56F-48CE-98F3-7BA3EE7DC9C8} = {30AF5779-46BC-4B15-801E-FF332F5102A1}
+		{917B4D82-8306-4CAA-A87A-232DA194F620} = {30AF5779-46BC-4B15-801E-FF332F5102A1}
+		{0B02E7CF-EFEE-4377-8881-33C817698AD4} = {30AF5779-46BC-4B15-801E-FF332F5102A1}
+		{BBDD22A2-121B-487F-AF8D-0507BC657E08} = {D1D91781-1599-41C8-BA2A-0CA4B299E531}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25097875-D55F-4386-AEAA-3B8C24C87234}
+	EndGlobalSection
+EndGlobal

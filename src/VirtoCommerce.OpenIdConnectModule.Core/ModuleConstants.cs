@@ -6,6 +6,7 @@ namespace VirtoCommerce.OpenIdConnectModule.Core;
 public static class ModuleConstants
 {
     public const string OidcAuthenticationType = "oidc";
+    public const int ProviderPriority = 200;
 
     public static class Security
     {
@@ -32,7 +33,7 @@ public static class ModuleConstants
     {
         public static class General
         {
-            public static SettingDescriptor oidcEnabled { get; } = new()
+            public static SettingDescriptor OidcEnabled { get; } = new()
             {
                 Name = "oidc.oidcEnabled",
                 GroupName = "oidc|General",
@@ -40,7 +41,7 @@ public static class ModuleConstants
                 DefaultValue = false,
             };
 
-            public static SettingDescriptor oidcPassword { get; } = new()
+            public static SettingDescriptor OidcPassword { get; } = new()
             {
                 Name = "oidc.oidcPassword",
                 GroupName = "oidc|Advanced",
@@ -52,8 +53,8 @@ public static class ModuleConstants
             {
                 get
                 {
-                    yield return oidcEnabled;
-                    yield return oidcPassword;
+                    yield return OidcEnabled;
+                    yield return OidcPassword;
                 }
             }
         }

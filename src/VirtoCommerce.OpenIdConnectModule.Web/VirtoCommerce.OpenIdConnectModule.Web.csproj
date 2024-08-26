@@ -8,6 +8,12 @@
     <SonarQubeTestProject>false</SonarQubeTestProject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Scripts\**" />
+    <Content Remove="Scripts\**" />
+    <EmbeddedResource Remove="Scripts\**" />
+    <None Remove="Scripts\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AspNet.Security.OpenIdConnect.Primitives" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.0" />
     <PackageReference Include="OpenIddict.AspNetCore" Version="4.10.1" />
@@ -15,8 +21,5 @@
   <ItemGroup>
     <ProjectReference Include="..\VirtoCommerce.OpenIdConnectModule.Core\VirtoCommerce.OpenIdConnectModule.Core.csproj" />
     <ProjectReference Include="..\VirtoCommerce.OpenIdConnectModule.Data\VirtoCommerce.OpenIdConnectModule.Data.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\" />
   </ItemGroup>
 </Project>

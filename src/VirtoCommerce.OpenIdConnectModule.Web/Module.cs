@@ -47,12 +47,12 @@ public class Module : IModule, IHasConfiguration
                     options.DefaultChallengeScheme = ModuleConstants.OidcAuthenticationType;
                 });
                 serviceCollection.AddCookiePolicy(options =>
-                {
-                    options.MinimumSameSitePolicy = SameSiteMode.None;
-                });
+                  {
+                      options.MinimumSameSitePolicy = SameSiteMode.None; 
+                  });
 
                 var authBuilder = new AuthenticationBuilder(serviceCollection);
-
+                
                 authBuilder.AddOpenIdConnect(options.AuthenticationType, options.AuthenticationCaption,
                     openIdConnectOptions =>
                     {

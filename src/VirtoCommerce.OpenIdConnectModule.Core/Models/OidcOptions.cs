@@ -68,7 +68,7 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         /// <summary>
         /// Client Id 
         /// </summary>
-        public string CallbackPath { get; set; } = "/signin-oidc";
+        public string CallbackPath { get; set; }
 
         /// <summary>
         /// Response type 

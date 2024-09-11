@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using VirtoCommerce.OpenIdConnectModule.Data.Services;
 using VirtoCommerce.OpenIdConnectModule.Core;
 using VirtoCommerce.OpenIdConnectModule.Core.Models;
+using System.Threading.Tasks;
+using VirtoCommerce.Platform.Core.Security.ExternalSignIn;
 
 namespace VirtoCommerce.OpenIdConnectModule.Web;
 
@@ -45,12 +47,12 @@ public class Module : IModule, IHasConfiguration
                     options.DefaultChallengeScheme = ModuleConstants.OidcAuthenticationType;
                 });
                 serviceCollection.AddCookiePolicy(options =>
-                  {
-                      options.MinimumSameSitePolicy = SameSiteMode.None; 
-                  });
+                {
+                    options.MinimumSameSitePolicy = SameSiteMode.None;
+                });
 
                 var authBuilder = new AuthenticationBuilder(serviceCollection);
-                
+
                 authBuilder.AddOpenIdConnect(options.AuthenticationType, options.AuthenticationCaption,
                     openIdConnectOptions =>
                     {
@@ -71,8 +73,18 @@ public class Module : IModule, IHasConfiguration
                         openIdConnectOptions.GetClaimsFromUserInfoEndpoint = options.GetClaimsFromUserInfoEndpoint;
                         options.Scope.ForEach(scope => openIdConnectOptions.Scope.Add(scope));
 
-                        openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
-                        openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
+                        openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Name, ModuleConstants.JsonKeyName);
+                        openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, ModuleConstants.JsonKeyEmail);
+
+                         openIdConnectOptions.Events.OnRedirectToIdentityProvider = context =>
+                        {
+                            var oidcUrl = context.Properties.GetOidcUrl();
+                            if (!string.IsNullOrEmpty(oidcUrl))
+                            {
+                                context.ProtocolMessage.RedirectUri = oidcUrl;
+                            }
+                            return Task.CompletedTask;
+                        };
                     });
 
                 // register default external provider implementation

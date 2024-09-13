@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using VirtoCommerce.Platform.Core.Settings;
-
 namespace VirtoCommerce.OpenIdConnectModule.Core;
 
 public static class ModuleConstants

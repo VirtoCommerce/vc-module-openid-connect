@@ -4,7 +4,6 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
 {
     public class OidcOptions
     {
-
         /// <summary>
         /// Determines whether the user authentication via OpenId Connect is enabled.
         /// </summary>
@@ -68,7 +67,7 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         /// <summary>
         /// Client Id 
         /// </summary>
-        public string CallbackPath { get; set; }
+        public string CallbackPath { get; set; } = "/signin-openid-connect";
 
         /// <summary>
         /// Response type 

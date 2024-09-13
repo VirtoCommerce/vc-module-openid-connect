@@ -1,19 +1,16 @@
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using VirtoCommerce.Platform.Core.Modularity;
-using Microsoft.AspNetCore.Authentication;
-using VirtoCommerce.Platform.Security.ExternalSignIn;
-using System.Linq;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using VirtoCommerce.OpenIdConnectModule.Data.Services;
 using VirtoCommerce.OpenIdConnectModule.Core;
 using VirtoCommerce.OpenIdConnectModule.Core.Models;
-using System.Threading.Tasks;
+using VirtoCommerce.OpenIdConnectModule.Data.Services;
+using VirtoCommerce.Platform.Core.Modularity;
 using VirtoCommerce.Platform.Core.Security.ExternalSignIn;
+using VirtoCommerce.Platform.Security.ExternalSignIn;
 
 namespace VirtoCommerce.OpenIdConnectModule.Web;
 
@@ -35,24 +32,8 @@ public class Module : IModule, IHasConfiguration
 
             if (options.Enabled)
             {
-                serviceCollection.AddSession(options =>
-                {
-                    options.Cookie.HttpOnly = true;
-                    options.Cookie.IsEssential = true;
-                });
-                serviceCollection.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultSignOutScheme = OpenIdConnectDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = ModuleConstants.OidcAuthenticationType;
-                });
-                serviceCollection.AddCookiePolicy(options =>
-                  {
-                      options.MinimumSameSitePolicy = SameSiteMode.None; 
-                  });
-
                 var authBuilder = new AuthenticationBuilder(serviceCollection);
-                
+
                 authBuilder.AddOpenIdConnect(options.AuthenticationType, options.AuthenticationCaption,
                     openIdConnectOptions =>
                     {
@@ -76,15 +57,15 @@ public class Module : IModule, IHasConfiguration
                         openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Name, ModuleConstants.JsonKeyName);
                         openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, ModuleConstants.JsonKeyEmail);
 
-                         openIdConnectOptions.Events.OnRedirectToIdentityProvider = context =>
-                        {
-                            var oidcUrl = context.Properties.GetOidcUrl();
-                            if (!string.IsNullOrEmpty(oidcUrl))
-                            {
-                                context.ProtocolMessage.RedirectUri = oidcUrl;
-                            }
-                            return Task.CompletedTask;
-                        };
+                        openIdConnectOptions.Events.OnRedirectToIdentityProvider = context =>
+                       {
+                           var oidcUrl = context.Properties.GetOidcUrl();
+                           if (!string.IsNullOrEmpty(oidcUrl))
+                           {
+                               context.ProtocolMessage.RedirectUri = oidcUrl;
+                           }
+                           return Task.CompletedTask;
+                       };
                     });
 
                 // register default external provider implementation

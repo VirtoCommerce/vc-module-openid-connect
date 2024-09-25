@@ -26,7 +26,9 @@ The module configuration for OpenID Connect (OIDC) authentication is defined in 
 * UseTokenLifetime: A boolean value indicating whether to use the token’s lifetime as provided by the OIDC provider.
 * Scope: An array of strings specifying the scopes requested from the OIDC provider, e.g., ["profile", "email"].
 * GetClaimsFromUserInfoEndpoint: A boolean value indicating whether to retrieve additional claims from the user info endpoint.
-* CallbackPath: The path to which the OIDC provider will redirect after authentication, e.g., "/signin-oidc".
+* CallbackPath: The path to which the OIDC provider will redirect after authentication, by default "/signin-openid-connect"
+
+> Note: If you other external sign-in providers installed (Microsoft Entra ID or Google SSO) you need to make sure to use unique callback paths for each provider.
 
 ```json
   "oidc": {
@@ -45,7 +47,7 @@ The module configuration for OpenID Connect (OIDC) authentication is defined in 
     "UseTokenLifetime" : true,
     "Scope" : ["profile", "email"],
     "GetClaimsFromUserInfoEndpoint" : true,
-    "CallbackPath": "/signin-oidc"
+    "CallbackPath": "/signin-openid-connect"
   }
 ```
 

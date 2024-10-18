@@ -23,7 +23,7 @@ public class Module : IModule, IHasConfiguration
     {
         Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-        var oidcSection = Configuration.GetSection(ModuleConstants.OidcAuthenticationType);
+        var oidcSection = Configuration.GetSection("oidc");
         if (oidcSection.GetChildren().Any())
         {
             var options = new OidcOptions();
@@ -73,7 +73,7 @@ public class Module : IModule, IHasConfiguration
                 serviceCollection.AddSingleton<OidcExternalSignInProvider>();
                 serviceCollection.AddSingleton(provider => new ExternalSignInProviderConfiguration
                 {
-                    AuthenticationType = ModuleConstants.OidcAuthenticationType,
+                    AuthenticationType = options.AuthenticationType,
                     Provider = provider.GetService<OidcExternalSignInProvider>(),
                     LogoUrl = "Modules/$(VirtoCommerce.OpenIdConnectModule)/Content/openid-icon.webp",
                 });

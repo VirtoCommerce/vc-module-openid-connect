@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using VirtoCommerce.OpenIdConnectModule.Core;
 using VirtoCommerce.OpenIdConnectModule.Core.Models;
 using VirtoCommerce.Platform.Security.ExternalSignIn;
 
@@ -16,7 +15,7 @@ public class OidcExternalSignInProvider : IExternalSignInProvider
         _oidcOptions = oidcOptions.Value;
     }
 
-    public int Priority => ModuleConstants.ProviderPriority;
+    public int Priority => _oidcOptions.Priority;
 
     public bool HasLoginForm => _oidcOptions.HasLoginForm;
 

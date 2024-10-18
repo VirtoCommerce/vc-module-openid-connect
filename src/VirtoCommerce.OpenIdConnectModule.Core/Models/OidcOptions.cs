@@ -129,5 +129,10 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         /// 
         /// </summary>
         public string SignOutScheme { get; set; }
+
+        /// <summary>
+        /// The sorting order of the external sign-in provider.
+        /// </summary>
+        public int Priority { get; set; } = 200;
     }
 }

@@ -23,12 +23,12 @@ public class Module : IModule, IHasConfiguration
     {
         Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-        var OidcSection = Configuration.GetSection(ModuleConstants.OidcAuthenticationType);
-        if (OidcSection.GetChildren().Any())
+        var oidcSection = Configuration.GetSection(ModuleConstants.OidcAuthenticationType);
+        if (oidcSection.GetChildren().Any())
         {
             var options = new OidcOptions();
-            OidcSection.Bind(options);
-            serviceCollection.Configure<OidcOptions>(OidcSection);
+            oidcSection.Bind(options);
+            serviceCollection.Configure<OidcOptions>(oidcSection);
 
             if (options.Enabled)
             {

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using VirtoCommerce.OpenIdConnectModule.Core;
 using VirtoCommerce.OpenIdConnectModule.Core.Models;
 using VirtoCommerce.OpenIdConnectModule.Data.Services;
 using VirtoCommerce.Platform.Core.Modularity;
@@ -54,8 +53,8 @@ public class Module : IModule, IHasConfiguration
                         openIdConnectOptions.GetClaimsFromUserInfoEndpoint = options.GetClaimsFromUserInfoEndpoint;
                         options.Scope.ForEach(scope => openIdConnectOptions.Scope.Add(scope));
 
-                        openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Name, ModuleConstants.JsonKeyName);
-                        openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, ModuleConstants.JsonKeyEmail);
+                        openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
+                        openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
 
                         openIdConnectOptions.Events.OnRedirectToIdentityProvider = context =>
                         {

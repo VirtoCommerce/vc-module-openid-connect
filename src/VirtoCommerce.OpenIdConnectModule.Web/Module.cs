@@ -58,14 +58,15 @@ public class Module : IModule, IHasConfiguration
                         openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, ModuleConstants.JsonKeyEmail);
 
                         openIdConnectOptions.Events.OnRedirectToIdentityProvider = context =>
-                       {
-                           var oidcUrl = context.Properties.GetOidcUrl();
-                           if (!string.IsNullOrEmpty(oidcUrl))
-                           {
-                               context.ProtocolMessage.RedirectUri = oidcUrl;
-                           }
-                           return Task.CompletedTask;
-                       };
+                        {
+                            var oidcUrl = context.Properties.GetOidcUrl();
+                            if (!string.IsNullOrEmpty(oidcUrl))
+                            {
+                                context.ProtocolMessage.RedirectUri = oidcUrl;
+                            }
+
+                            return Task.CompletedTask;
+                        };
                     });
 
                 // register default external provider implementation
@@ -74,7 +75,7 @@ public class Module : IModule, IHasConfiguration
                 {
                     AuthenticationType = ModuleConstants.OidcAuthenticationType,
                     Provider = provider.GetService<OidcExternalSignInProvider>(),
-                    LogoUrl = "Modules/$(VirtoCommerce.OpenIdConnectModule)/Content/openid-icon.webp"
+                    LogoUrl = "Modules/$(VirtoCommerce.OpenIdConnectModule)/Content/openid-icon.webp",
                 });
             }
         }

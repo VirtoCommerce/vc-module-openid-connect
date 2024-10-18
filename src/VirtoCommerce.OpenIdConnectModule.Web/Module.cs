@@ -69,7 +69,7 @@ public class Module : IModule, IHasConfiguration
                         };
                     });
 
-                // register default external provider implementation
+                // Register external sign in provider implementation
                 serviceCollection.AddSingleton<OidcExternalSignInProvider>();
                 serviceCollection.AddSingleton(provider => new ExternalSignInProviderConfiguration
                 {

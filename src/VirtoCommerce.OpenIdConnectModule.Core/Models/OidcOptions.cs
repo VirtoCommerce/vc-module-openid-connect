@@ -20,11 +20,6 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         public string AuthenticationCaption { get; set; }
 
         /// <summary>
-        /// Application ID of the VirtoCommerce platform application registered in OpenId Connect.
-        /// </summary>
-        public string ApplicationId { get; set; }
-
-        /// <summary>
         /// URL of the OpenId Connect endpoint used for authentication.
         /// </summary>
         public string Authority { get; set; }

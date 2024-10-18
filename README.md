@@ -15,7 +15,6 @@ The module configuration for OpenID Connect (OIDC) authentication is defined in 
 * AuthenticationType: Specifies the type of authentication. For OIDC, this should be set to "oidc".
 * Authority: The URL of the OIDC provider. This is the base address of the identity provider, e.g., https://localhost:5001.
 * AuthenticationCaption: A user-friendly name for the authentication method, e.g., "OpenID Connect".
-* ApplicationId: The unique identifier for the application registered with the OIDC provider.
 * ClientId: The client identifier issued to the application by the OIDC provider.
 * ClientSecret: The client secret issued to the application by the OIDC provider. This should be kept confidential.
 * DefaultUserType: Specifies the default user type upon successful authentication, e.g., "Manager".
@@ -36,7 +35,6 @@ The module configuration for OpenID Connect (OIDC) authentication is defined in 
     "AuthenticationType": "oidc",
     "Authority": "https://localhost:5001",
     "AuthenticationCaption": "OpenID Connect",
-    "ApplicationId": "cf4cb5a0-17c8-4cde-91fd-f23f0891ae20",
     "ClientId": "cf4cb5a0-17c8-4cde-91fd-f23f0891ae20",
     "ClientSecret": "ad724695-ca42-4271-a9ba-636a2d50f7ec",
     "DefaultUserType": "Manager",

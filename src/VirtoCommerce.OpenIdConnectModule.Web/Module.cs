@@ -36,22 +36,7 @@ public class Module : IModule, IHasConfiguration
                 authBuilder.AddOpenIdConnect(options.AuthenticationType, options.AuthenticationCaption,
                     openIdConnectOptions =>
                     {
-                        openIdConnectOptions.ClientId = options.ClientId;
-                        openIdConnectOptions.ClientSecret = options.ClientSecret;
-                        openIdConnectOptions.Authority = options.Authority;
-                        openIdConnectOptions.UseTokenLifetime = options.UseTokenLifetime;
-                        openIdConnectOptions.SaveTokens = options.SaveTokens;
-                        openIdConnectOptions.ResponseMode = options.ResponseMode;
-                        openIdConnectOptions.ResponseType = options.ResponseType;
-                        openIdConnectOptions.MetadataAddress = options.MetadataAddress;
-                        openIdConnectOptions.RequireHttpsMetadata = options.RequireHttpsMetadata;
-                        openIdConnectOptions.SignInScheme = options.SignInScheme;
-                        openIdConnectOptions.SignOutScheme = options.SignOutScheme;
-                        openIdConnectOptions.CallbackPath = options.CallbackPath;
-                        openIdConnectOptions.SignedOutCallbackPath = options.SignedOutCallbackPath;
-                        openIdConnectOptions.SignedOutRedirectUri = options.SignedOutRedirectUri;
-                        openIdConnectOptions.GetClaimsFromUserInfoEndpoint = options.GetClaimsFromUserInfoEndpoint;
-                        options.Scope.ForEach(scope => openIdConnectOptions.Scope.Add(scope));
+                        oidcSection.Bind(openIdConnectOptions);
 
                         openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
                         openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");

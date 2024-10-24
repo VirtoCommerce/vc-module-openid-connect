@@ -12,12 +12,12 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         /// <summary>
         /// Sets AuthenticationType value for OpenId Connect authentication provider.
         /// </summary>
-        public string AuthenticationType { get; set; }
+        public string AuthenticationType { get; set; } = "oidc";
 
         /// <summary>
         /// Sets human-readable caption for OpenId Connect authentication provider. It is visible on sign-in page.
         /// </summary>
-        public string AuthenticationCaption { get; set; }
+        public string AuthenticationCaption { get; set; } = "OpenID Connect";
 
         /// <summary>
         /// URL of the OpenId Connect endpoint used for authentication.
@@ -27,12 +27,12 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         /// <summary>
         /// Default user type for users created by OpenId Connect accounts.
         /// </summary>
-        public string DefaultUserType { get; set; }
+        public string DefaultUserType { get; set; } = "Manager";
 
         /// <summary>
         /// Default user roles for users created by OpenId Connect accounts.
         /// </summary>
-        public string[] DefaultUserRoles { get; set; }
+        public string[] DefaultUserRoles { get; set; } = [];
 
         /// <summary>
         /// Allow creating new user when a user authenticates via IDP for the first time

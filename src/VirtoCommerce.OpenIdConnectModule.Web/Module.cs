@@ -1,5 +1,7 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -42,6 +44,18 @@ public class Module : IModule, IHasConfiguration
                             {
                                 context.ProtocolMessage.RedirectUri = oidcUrl;
                             }
+
+                            return Task.CompletedTask;
+                        };
+
+                        openIdConnectOptions.Events.OnAccessDenied = context =>
+                        {
+                            var baseUri = new Uri("https://localhost");
+                            var uri = new Uri(baseUri, context.ReturnUrl);
+                            var returnUrl = HttpUtility.ParseQueryString(uri.Query).GetValues(context.ReturnUrlParameter)?.FirstOrDefault();
+
+                            context.Response.Redirect(returnUrl ?? "/");
+                            context.HandleResponse();
 
                             return Task.CompletedTask;
                         };

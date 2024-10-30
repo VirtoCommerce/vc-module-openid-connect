@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using OpenIddict.Abstractions;
 using VirtoCommerce.OpenIdConnectModule.Core.Models;
 using VirtoCommerce.Platform.Security.ExternalSignIn;
 
@@ -23,7 +24,7 @@ public class OidcExternalSignInProvider : IExternalSignInProvider
 
     public string GetUserName(ExternalLoginInfo externalLoginInfo)
     {
-        var userName = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Name);
+        var userName = externalLoginInfo.Principal.FindFirstValue(OpenIddictConstants.Claims.Name);
 
         return userName;
     }

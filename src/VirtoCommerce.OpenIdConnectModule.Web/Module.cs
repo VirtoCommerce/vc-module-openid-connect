@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
@@ -20,8 +19,6 @@ public class Module : IModule, IHasConfiguration
 
     public void Initialize(IServiceCollection serviceCollection)
     {
-        Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
-
         var oidcSection = Configuration.GetSection("oidc");
         if (oidcSection.GetChildren().Any())
         {
@@ -37,9 +34,6 @@ public class Module : IModule, IHasConfiguration
                     openIdConnectOptions =>
                     {
                         oidcSection.Bind(openIdConnectOptions);
-
-                        openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
-                        openIdConnectOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
 
                         openIdConnectOptions.Events.OnRedirectToIdentityProvider = context =>
                         {

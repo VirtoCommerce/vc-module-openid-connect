@@ -18,6 +18,11 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         public string AuthenticationCaption { get; set; } = "OpenID Connect";
 
         /// <summary>
+        /// Allow creating new user when a user authenticates via IDP for the first time
+        /// </summary>
+        public bool AllowCreateNewUser { get; set; } = true;
+
+        /// <summary>
         /// Default user type for users created by OpenId Connect accounts.
         /// </summary>
         public string DefaultUserType { get; set; } = "Manager";
@@ -28,11 +33,6 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         public string[] DefaultUserRoles { get; set; } = [];
 
         /// <summary>
-        /// Allow creating new user when a user authenticates via IDP for the first time
-        /// </summary>
-        public bool AllowCreateNewUser { get; set; } = true;
-
-        /// <summary>
         /// Display dedicated login form or not
         /// </summary>
         public bool HasLoginForm { get; set; } = true;
@@ -40,6 +40,6 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         /// <summary>
         /// The sorting order of the external sign-in provider.
         /// </summary>
-        public int Priority { get; set; } = 200;
+        public int Priority { get; set; }
     }
 }

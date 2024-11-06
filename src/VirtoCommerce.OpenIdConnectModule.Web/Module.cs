@@ -50,6 +50,7 @@ public class Module : IModule, IHasConfiguration
 
                         openIdConnectOptions.Events.OnAccessDenied = context =>
                         {
+                            // Need a base URI (any) to work with relative URLs
                             var baseUri = new Uri("https://localhost");
                             var uri = new Uri(baseUri, context.ReturnUrl);
                             var returnUrl = HttpUtility.ParseQueryString(uri.Query).GetValues(context.ReturnUrlParameter)?.FirstOrDefault();

@@ -11,47 +11,61 @@ OpenID Connect is an identity module on top of the OAuth 2.0 protocol, allowing 
 ## Configuration
 The module configuration for OpenID Connect (OIDC) authentication is defined in the appsettings.json file under the `oidc` section. This configuration enables the application to authenticate users using the OIDC protocol. Below are the parameters and their descriptions:
 
-* Enabled: A boolean value indicating whether OIDC authentication is enabled. Set to true to enable.
-* AuthenticationType: Specifies the type of authentication. For OIDC, this should be set to "oidc".
-* Authority: The URL of the OIDC provider. This is the base address of the identity provider, e.g., https://localhost:5001.
-* AuthenticationCaption: A user-friendly name for the authentication method, e.g., "OpenID Connect".
-* ClientId: The client identifier issued to the application by the OIDC provider.
-* ClientSecret: The client secret issued to the application by the OIDC provider. This should be kept confidential.
-* DefaultUserType: Specifies the default user type upon successful authentication, e.g., "Manager".
-* ResponseMode: Defines how the authorization response is returned. Common values are "query" or "fragment".
-* ResponseType: Specifies the type of response expected from the OIDC provider. For example, "code" for authorization code flow.
-* RequireHttpsMetadata: A boolean value indicating whether HTTPS metadata is required. Set to false for development environments.
-* SaveTokens: A boolean value indicating whether to save the tokens received from the OIDC provider.
-* UseTokenLifetime: A boolean value indicating whether to use the token’s lifetime as provided by the OIDC provider.
-* Scope: An array of strings specifying the scopes requested from the OIDC provider, e.g., ["profile", "email"].
-* GetClaimsFromUserInfoEndpoint: A boolean value indicating whether to retrieve additional claims from the user info endpoint.
-* CallbackPath: The path to which the OIDC provider will redirect after authentication, by default "/signin-openid-connect"
+* `Enabled`: A boolean value indicating whether OIDC authentication is enabled. Set to `true` to enable.
+* `AuthenticationType`: Specifies the unique name of the authentication method. Default value is `"oidc"`.
+* `AuthenticationCaption`: A user-friendly name for the authentication method. Default value is `"OpenID Connect"`.
+* `AllowCreateNewUser`: A boolean value indicating whether a new user should be created upon successful authentication. Default value is `true`.
+* `DefaultUserType`: Specifies the user type of a new user. Default value is `"Manager"`.
+* `DefaultUserRoles`: Specifies the list of user roles of a new user. Default value is `[]`.
+* `HasLoginForm`: A boolean value indicating whether to display a dedicated login form or not. Default value is `true`.
+* `Priority`: An integer value specifying the sorting order of the authentication method. Default value is `0`.
+* `Authority`: The URL of the OIDC provider. This is the base address of the identity provider, e.g., https://localhost:5001.
+* `ClientId`: The client identifier issued to the application by the OIDC provider.
+* `ClientSecret`: The client secret issued to the application by the OIDC provider. This should be kept confidential.
+* `ResponseMode`: Defines how the authorization response is returned. Default value is `"form_post"`.
+* `ResponseType`: Specifies the type of response expected from the OIDC provider. Default value is `"id_token"`.
+* `Scope`: An array of strings specifying the scopes requested from the OIDC provider. Default value is `["openid", "profile"]`.
+* `GetClaimsFromUserInfoEndpoint`: A boolean value indicating whether to retrieve additional claims from the user info endpoint.
+* `CallbackPath`: The path to which the OIDC provider will redirect after authentication. Default value is `"/signin-oidc"`.
+* `RemoteSignOutPath`: Requests received on this path will cause the handler to invoke SignOut. Default value is `"/signout-oidc"`.
+* `SignedOutCallbackPath`: The path to which the OIDC provider will redirect after signing out. Default value is `"/signout-openid-connect"`.
+* `SignedOutRedirectUri`: The URI where the user agent will be redirected to after application is signed out from the identity provider. Default value is `"/"`.
 
-> Note: If you other external sign-in providers installed (Microsoft Entra ID or Google SSO) you need to make sure to use unique callback paths for each provider.
+The list of other parameters can be found in the [OpenIdConnectOptions](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.openidconnectoptions?view=aspnetcore-1.1&viewFallbackFrom=aspnetcore-8.0) documentation.
 
+> [!IMPORTANT] 
+> Note: If you have other external sign-in providers installed (Microsoft Entra ID or Google SSO) you need to make sure to use unique authentication types and callback paths for each provider.
+
+> [!NOTE]
+> The module was designed and tested with this version of the platform [VCST-1415: Platform as authorization server](https://github.com/VirtoCommerce/vc-platform/pull/2809)
+
+### Example settings for Virto Commerce
 ```json
   "oidc": {
     "Enabled": true,
-    "AuthenticationType": "oidc",
+    "AuthenticationType": "virto",
+    "AuthenticationCaption": "Virto Commerce",
     "Authority": "https://localhost:5001",
-    "AuthenticationCaption": "OpenID Connect",
-    "ClientId": "cf4cb5a0-17c8-4cde-91fd-f23f0891ae20",
-    "ClientSecret": "ad724695-ca42-4271-a9ba-636a2d50f7ec",
-    "DefaultUserType": "Manager",
+    "ClientId": "your-client-id",
+    "ClientSecret": "your-client-secret",
     "ResponseMode" : "query",
     "ResponseType" : "code",
-    "RequireHttpsMetadata" : false,
-    "SaveTokens" : true,
-    "UseTokenLifetime" : true,
-    "Scope" : ["profile", "email"],
-    "GetClaimsFromUserInfoEndpoint" : true,
-    "CallbackPath": "/signin-openid-connect"
+    "Scope" : ["openid", "profile", "email"],
+    "GetClaimsFromUserInfoEndpoint" : true
   }
 ```
 
-## Known limitation
-1. The module was designed and tested with this version of the platform [VCST-1415: Platform as authorization server](https://github.com/VirtoCommerce/vc-platform/pull/2809)
-2. Supports ResponseMode query only.
+### Example settings for Google
+```json
+  "oidc": {
+    "Enabled": true,
+    "AuthenticationType": "google",
+    "AuthenticationCaption": "Google",
+    "Authority": "https://accounts.google.com",
+    "ClientId": "your-client-id",
+    "ClientSecret": "your-client-secret"
+  }
+```
 
 ## License
 Copyright (c) Virto Solutions LTD.  All rights reserved.

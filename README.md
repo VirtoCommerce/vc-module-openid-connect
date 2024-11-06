@@ -34,7 +34,7 @@ The module configuration for OpenID Connect (OIDC) authentication is defined in 
 The list of other parameters can be found in the [OpenIdConnectOptions](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.openidconnectoptions?view=aspnetcore-1.1&viewFallbackFrom=aspnetcore-8.0) documentation.
 
 > [!IMPORTANT] 
-> Note: If you have other external sign-in providers installed (Microsoft Entra ID or Google SSO) you need to make sure to use unique authentication types and callback paths for each provider.
+> If you have other external sign-in providers installed (Microsoft Entra ID or Google SSO) you need to make sure to use unique authentication types and callback paths for each provider.
 
 > [!NOTE]
 > The module was designed and tested with this version of the platform [VCST-1415: Platform as authorization server](https://github.com/VirtoCommerce/vc-platform/pull/2809)

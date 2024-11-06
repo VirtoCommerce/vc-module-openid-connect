@@ -35,6 +35,7 @@ public class Module : IModule, IHasConfiguration
                 authBuilder.AddOpenIdConnect(options.AuthenticationType, options.AuthenticationCaption,
                     openIdConnectOptions =>
                     {
+                        openIdConnectOptions.MapInboundClaims = false;
                         oidcSection.Bind(openIdConnectOptions);
 
                         openIdConnectOptions.Events.OnRedirectToIdentityProvider = context =>

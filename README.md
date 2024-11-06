@@ -22,9 +22,9 @@ The module configuration for OpenID Connect (OIDC) authentication is defined in 
 * `Authority`: The URL of the OIDC provider. This is the base address of the identity provider, e.g., https://localhost:5001.
 * `ClientId`: The client identifier issued to the application by the OIDC provider.
 * `ClientSecret`: The client secret issued to the application by the OIDC provider. This should be kept confidential.
+* `Scope`: An array of strings specifying the scopes requested from the OIDC provider. Default value is `["openid", "profile"]`.
 * `ResponseMode`: Defines how the authorization response is returned. Default value is `"form_post"`.
 * `ResponseType`: Specifies the type of response expected from the OIDC provider. Default value is `"id_token"`.
-* `Scope`: An array of strings specifying the scopes requested from the OIDC provider. Default value is `["openid", "profile"]`.
 * `GetClaimsFromUserInfoEndpoint`: A boolean value indicating whether to retrieve additional claims from the user info endpoint.
 * `CallbackPath`: The path to which the OIDC provider will redirect after authentication. Default value is `"/signin-oidc"`.
 * `RemoteSignOutPath`: Requests received on this path will cause the handler to invoke SignOut. Default value is `"/signout-oidc"`.
@@ -48,9 +48,9 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
     "Authority": "https://localhost:5001",
     "ClientId": "your-client-id",
     "ClientSecret": "your-client-secret",
+    "Scope" : ["openid", "profile", "email"],
     "ResponseMode" : "query",
     "ResponseType" : "code",
-    "Scope" : ["openid", "profile", "email"],
     "GetClaimsFromUserInfoEndpoint" : true
   }
 ```
@@ -63,7 +63,8 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
     "AuthenticationCaption": "Google",
     "Authority": "https://accounts.google.com",
     "ClientId": "your-client-id",
-    "ClientSecret": "your-client-secret"
+    "ClientSecret": "your-client-secret",
+    "Scope" : ["openid", "profile", "email"]
   }
 ```
 

@@ -22,65 +22,82 @@ public class Module : IModule, IHasConfiguration
     public void Initialize(IServiceCollection serviceCollection)
     {
         var oidcSection = Configuration.GetSection("oidc");
-        if (oidcSection.GetChildren().Any())
+        if (!oidcSection.GetChildren().Any())
         {
-            var options = new OidcOptions();
-            oidcSection.Bind(options);
-            serviceCollection.Configure<OidcOptions>(oidcSection);
+            return;
+        }
 
-            if (options.Enabled)
+        // Support both single and multiple configurations
+        // Single:   "oidc": {...}
+        // Multiple: "oidc": [{...}, {...}]
+        if (oidcSection.GetSection("0").Exists())
+        {
+            foreach (var section in oidcSection.GetChildren())
             {
-                var authBuilder = new AuthenticationBuilder(serviceCollection);
+                RegisterOidcProvider(serviceCollection, section);
+            }
+        }
+        else
+        {
+            RegisterOidcProvider(serviceCollection, oidcSection);
+        }
+    }
 
-                authBuilder.AddOpenIdConnect(options.AuthenticationType, options.AuthenticationCaption,
-                    openIdConnectOptions =>
+    private static void RegisterOidcProvider(IServiceCollection serviceCollection, IConfigurationSection oidcSection)
+    {
+        var options = new OidcOptions();
+        oidcSection.Bind(options);
+
+        if (options.Enabled)
+        {
+            var authBuilder = new AuthenticationBuilder(serviceCollection);
+
+            authBuilder.AddOpenIdConnect(options.AuthenticationType, options.AuthenticationCaption,
+                openIdConnectOptions =>
+                {
+                    openIdConnectOptions.MapInboundClaims = false;
+
+                    openIdConnectOptions.Scope.Clear();
+                    if (!oidcSection.GetSection("Scope").Exists())
                     {
-                        openIdConnectOptions.MapInboundClaims = false;
+                        openIdConnectOptions.Scope.Add("openid");
+                        openIdConnectOptions.Scope.Add("profile");
+                        openIdConnectOptions.Scope.Add("email");
+                    }
 
-                        openIdConnectOptions.Scope.Clear();
-                        if (!oidcSection.GetSection("Scope").Exists())
+                    oidcSection.Bind(openIdConnectOptions);
+
+                    openIdConnectOptions.Events.OnRedirectToIdentityProvider = context =>
+                    {
+                        var oidcUrl = context.Properties.GetOidcUrl();
+                        if (!string.IsNullOrEmpty(oidcUrl))
                         {
-                            openIdConnectOptions.Scope.Add("openid");
-                            openIdConnectOptions.Scope.Add("profile");
-                            openIdConnectOptions.Scope.Add("email");
+                            context.ProtocolMessage.RedirectUri = oidcUrl;
                         }
 
-                        oidcSection.Bind(openIdConnectOptions);
+                        return Task.CompletedTask;
+                    };
 
-                        openIdConnectOptions.Events.OnRedirectToIdentityProvider = context =>
-                        {
-                            var oidcUrl = context.Properties.GetOidcUrl();
-                            if (!string.IsNullOrEmpty(oidcUrl))
-                            {
-                                context.ProtocolMessage.RedirectUri = oidcUrl;
-                            }
+                    openIdConnectOptions.Events.OnAccessDenied = context =>
+                    {
+                        // Need a base URI (any) to work with relative URLs
+                        var baseUri = new Uri("https://localhost");
+                        var uri = new Uri(baseUri, context.ReturnUrl);
+                        var returnUrl = HttpUtility.ParseQueryString(uri.Query).GetValues(context.ReturnUrlParameter)?.FirstOrDefault();
 
-                            return Task.CompletedTask;
-                        };
+                        context.Response.Redirect(returnUrl ?? "/");
+                        context.HandleResponse();
 
-                        openIdConnectOptions.Events.OnAccessDenied = context =>
-                        {
-                            // Need a base URI (any) to work with relative URLs
-                            var baseUri = new Uri("https://localhost");
-                            var uri = new Uri(baseUri, context.ReturnUrl);
-                            var returnUrl = HttpUtility.ParseQueryString(uri.Query).GetValues(context.ReturnUrlParameter)?.FirstOrDefault();
-
-                            context.Response.Redirect(returnUrl ?? "/");
-                            context.HandleResponse();
-
-                            return Task.CompletedTask;
-                        };
-                    });
-
-                // Register external sign in provider implementation
-                serviceCollection.AddSingleton<OidcExternalSignInProvider>();
-                serviceCollection.AddSingleton(provider => new ExternalSignInProviderConfiguration
-                {
-                    AuthenticationType = options.AuthenticationType,
-                    Provider = provider.GetService<OidcExternalSignInProvider>(),
-                    LogoUrl = options.LogoUrl,
+                        return Task.CompletedTask;
+                    };
                 });
-            }
+
+            serviceCollection.AddSingleton(new ExternalSignInProviderConfiguration
+            {
+                AuthenticationType = options.AuthenticationType,
+                Provider = new OidcExternalSignInProvider(options),
+                LogoUrl = options.LogoUrl,
+            });
         }
     }
 

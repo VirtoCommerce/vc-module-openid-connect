@@ -30,9 +30,7 @@ The module configuration for OpenID Connect (OIDC) authentication is defined in 
 * `ResponseType`: Specifies the type of response expected from the OIDC provider. Default value is `"id_token"`.
 * `GetClaimsFromUserInfoEndpoint`: A boolean value indicating whether to retrieve additional claims from the user info endpoint.
 * `CallbackPath`: The path to which the OIDC provider will redirect after authentication. Default value is `"/signin-oidc"`.
-* `RemoteSignOutPath`: Requests received on this path will cause the handler to invoke SignOut. Default value is `"/signout-oidc"`.
-* `SignedOutCallbackPath`: The path to which the OIDC provider will redirect after signing out. Default value is `"/signout-openid-connect"`.
-* `SignedOutRedirectUri`: The URI where the user agent will be redirected to after application is signed out from the identity provider. Default value is `"/"`.
+* `SignedOutCallbackPath`: The path to which the OIDC provider will redirect after signing out. Default value is `"/signout-callback-oidc"`.
 
 The list of other parameters can be found in the [OpenIdConnectOptions](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.openidconnectoptions?view=aspnetcore-1.1&viewFallbackFrom=aspnetcore-8.0) documentation.
 
@@ -51,9 +49,9 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
     "Authority": "https://localhost:5001",
     "ClientId": "your-client-id",
     "ClientSecret": "your-client-secret",
-    "ResponseMode" : "query",
-    "ResponseType" : "code",
-    "GetClaimsFromUserInfoEndpoint" : true
+    "ResponseMode": "query",
+    "ResponseType": "code",
+    "GetClaimsFromUserInfoEndpoint": true
   }
 ```
 
@@ -80,6 +78,46 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
     "ClientId": "your-application-id",
     "UserNameClaimType": "preferred_username"
   }
+```
+
+### Example settings for multiple configurations
+```json
+  "oidc": [
+    {
+      "Enabled": true,
+      "AuthenticationType": "virto",
+      "AuthenticationCaption": "Virto Commerce",
+      "Authority": "https://localhost:5001",
+      "ClientId": "your-client-id",
+      "ClientSecret": "your-client-secret",
+      "ResponseMode": "query",
+      "ResponseType": "code",
+      "GetClaimsFromUserInfoEndpoint": true,
+      "CallbackPath": "/signin-virto",
+      "SignedOutCallbackPath": "/signout-virto"
+    },
+    {
+      "Enabled": true,
+      "AuthenticationType": "google",
+      "AuthenticationCaption": "Google",
+      "Authority": "https://accounts.google.com",
+      "ClientId": "your-client-id",
+      "ClientSecret": "your-client-secret",
+      "UserNameClaimType": "email",
+      "CallbackPath": "/signin-google",
+      "SignedOutCallbackPath": "/signout-google"
+    },
+    {
+      "Enabled": true,
+      "AuthenticationType": "microsoft",
+      "AuthenticationCaption": "Microsoft",
+      "Authority": "https://login.microsoftonline.com/your-tenant-id/v2.0",
+      "ClientId": "your-application-id",
+      "UserNameClaimType": "preferred_username",
+      "CallbackPath": "/signin-microsoft",
+      "SignedOutCallbackPath": "/signout-microsoft"
+    }
+  ]
 ```
 
 ## License

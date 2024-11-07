@@ -17,6 +17,8 @@ The module configuration for OpenID Connect (OIDC) authentication is defined in 
 * `AllowCreateNewUser`: A boolean value indicating whether a new user should be created upon successful authentication. Default value is `true`.
 * `DefaultUserType`: Specifies the user type of a new user. Default value is `"Manager"`.
 * `DefaultUserRoles`: Specifies the list of user roles of a new user. Default value is `[]`.
+* `UserNameClaimType`: Specifies the claim type used to retrieve the username. Default value is `"name"`.
+* `EmailClaimType`: Specifies the claim type used to retrieve the email address. Default value is `"email"`.
 * `HasLoginForm`: A boolean value indicating whether to display a dedicated login form or not. Default value is `true`.
 * `Priority`: An integer value specifying the sorting order of the authentication method. Default value is `0`.
 * `Authority`: The URL of the OIDC provider. This is the base address of the identity provider, e.g., https://localhost:5001.
@@ -64,7 +66,8 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
     "Authority": "https://accounts.google.com",
     "ClientId": "your-client-id",
     "ClientSecret": "your-client-secret",
-    "Scope" : ["openid", "profile", "email"]
+    "Scope" : ["openid", "profile", "email"],
+    "UserNameClaimType": "email"
   }
 ```
 

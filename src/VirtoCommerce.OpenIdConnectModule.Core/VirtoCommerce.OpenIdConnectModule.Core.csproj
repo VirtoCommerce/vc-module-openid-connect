@@ -7,6 +7,6 @@
     <SonarQubeTestProject>false</SonarQubeTestProject>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="VirtoCommerce.Platform.Core" Version="3.862.0-alpha.13040-sso2" />
+    <PackageReference Include="VirtoCommerce.Platform.Core" Version="3.862.0-alpha.13044-sso2" />
   </ItemGroup>
 </Project>

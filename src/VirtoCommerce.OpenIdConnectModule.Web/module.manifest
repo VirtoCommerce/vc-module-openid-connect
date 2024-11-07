@@ -4,7 +4,7 @@
   <version>3.800.0</version>
   <version-tag></version-tag>
 
-  <platformVersion>3.862.0-alpha.13040-sso2</platformVersion>
+  <platformVersion>3.862.0-alpha.13044-sso2</platformVersion>
   <dependencies />
 
   <title>VirtoCommerce OpenIdConnect module</title>
@@ -12,6 +12,7 @@
 
   <authors>
     <author>Igoris Berniukevicius</author>
+    <author>Artem Dudarev</author>
   </authors>
   <owners>
     <owner>VirtoCommerce</owner>

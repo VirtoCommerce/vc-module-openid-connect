@@ -33,6 +33,16 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         public string[] DefaultUserRoles { get; set; } = [];
 
         /// <summary>
+        /// Specifies the claim type used to retrieve the username.
+        /// </summary>
+        public string UserNameClaimType { get; set; } = "name";
+
+        /// <summary>
+        /// Specifies the claim type used to retrieve the email address.
+        /// </summary>
+        public string EmailClaimType { get; set; } = "email";
+
+        /// <summary>
         /// Display dedicated login form or not
         /// </summary>
         public bool HasLoginForm { get; set; } = true;

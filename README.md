@@ -69,6 +69,18 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
   }
 ```
 
+### Example settings for Microsoft
+```json
+  "oidc": {
+    "Enabled": true,
+    "AuthenticationType": "microsoft",
+    "AuthenticationCaption": "Microsoft",
+    "Authority": "https://login.microsoftonline.com/your-tenant-id/v2.0",
+    "ClientId": "your-application-id",
+    "UserNameClaimType": "preferred_username"
+  }
+```
+
 ## License
 Copyright (c) Virto Solutions LTD.  All rights reserved.
 

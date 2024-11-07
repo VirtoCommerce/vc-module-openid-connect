@@ -51,5 +51,10 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         /// The sorting order of the external sign-in provider.
         /// </summary>
         public int Priority { get; set; } = 1;
+
+        /// <summary>
+        /// URL of the logo for the OpenId Connect authentication provider.
+        /// </summary>
+        public string LogoUrl { get; set; } = "Modules/$(VirtoCommerce.OpenIdConnectModule)/Content/openid-icon.webp";
     }
 }

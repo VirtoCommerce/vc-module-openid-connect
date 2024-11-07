@@ -78,7 +78,7 @@ public class Module : IModule, IHasConfiguration
                 {
                     AuthenticationType = options.AuthenticationType,
                     Provider = provider.GetService<OidcExternalSignInProvider>(),
-                    LogoUrl = "Modules/$(VirtoCommerce.OpenIdConnectModule)/Content/openid-icon.webp",
+                    LogoUrl = options.LogoUrl,
                 });
             }
         }

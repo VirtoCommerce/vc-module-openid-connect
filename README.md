@@ -21,6 +21,7 @@ The module configuration for OpenID Connect (OIDC) authentication is defined in 
 * `EmailClaimType`: Specifies the claim type used to retrieve the email address. Default value is `"email"`.
 * `HasLoginForm`: A boolean value indicating whether to display a dedicated login form or not. Default value is `true`.
 * `Priority`: An integer value specifying the sorting order of the authentication method. Default value is `1`.
+* `LogoUrl`: URL of the logo for the OpenId Connect authentication provider.
 * `Authority`: The URL of the OIDC provider. This is the base address of the identity provider, e.g., https://localhost:5001.
 * `ClientId`: The client identifier issued to the application by the OIDC provider.
 * `ClientSecret`: The client secret issued to the application by the OIDC provider. This should be kept confidential.

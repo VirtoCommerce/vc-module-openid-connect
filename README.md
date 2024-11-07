@@ -11,7 +11,7 @@ OpenID Connect is an identity module on top of the OAuth 2.0 protocol, allowing 
 ## Configuration
 The module configuration for OpenID Connect (OIDC) authentication is defined in the appsettings.json file under the `oidc` section. This configuration enables the application to authenticate users using the OIDC protocol. Below are the parameters and their descriptions:
 
-* `Enabled`: A boolean value indicating whether OIDC authentication is enabled. Set to `true` to enable.
+* `Enabled`: A boolean value indicating whether OIDC authentication is enabled. Set to `true` to enable. Default value is `false`.
 * `AuthenticationType`: Specifies the unique name of the authentication method. Default value is `"oidc"`.
 * `AuthenticationCaption`: A user-friendly name for the authentication method. Default value is `"OpenID Connect"`.
 * `AllowCreateNewUser`: A boolean value indicating whether a new user should be created upon successful authentication. Default value is `true`.
@@ -20,11 +20,11 @@ The module configuration for OpenID Connect (OIDC) authentication is defined in 
 * `UserNameClaimType`: Specifies the claim type used to retrieve the username. Default value is `"name"`.
 * `EmailClaimType`: Specifies the claim type used to retrieve the email address. Default value is `"email"`.
 * `HasLoginForm`: A boolean value indicating whether to display a dedicated login form or not. Default value is `true`.
-* `Priority`: An integer value specifying the sorting order of the authentication method. Default value is `0`.
+* `Priority`: An integer value specifying the sorting order of the authentication method. Default value is `1`.
 * `Authority`: The URL of the OIDC provider. This is the base address of the identity provider, e.g., https://localhost:5001.
 * `ClientId`: The client identifier issued to the application by the OIDC provider.
 * `ClientSecret`: The client secret issued to the application by the OIDC provider. This should be kept confidential.
-* `Scope`: An array of strings specifying the scopes requested from the OIDC provider. Default value is `["openid", "profile"]`.
+* `Scope`: An array of strings specifying the scopes requested from the OIDC provider. Default value is `["openid", "profile", "email"]`.
 * `ResponseMode`: Defines how the authorization response is returned. Default value is `"form_post"`.
 * `ResponseType`: Specifies the type of response expected from the OIDC provider. Default value is `"id_token"`.
 * `GetClaimsFromUserInfoEndpoint`: A boolean value indicating whether to retrieve additional claims from the user info endpoint.
@@ -50,7 +50,6 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
     "Authority": "https://localhost:5001",
     "ClientId": "your-client-id",
     "ClientSecret": "your-client-secret",
-    "Scope" : ["openid", "profile", "email"],
     "ResponseMode" : "query",
     "ResponseType" : "code",
     "GetClaimsFromUserInfoEndpoint" : true
@@ -66,7 +65,6 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
     "Authority": "https://accounts.google.com",
     "ClientId": "your-client-id",
     "ClientSecret": "your-client-secret",
-    "Scope" : ["openid", "profile", "email"],
     "UserNameClaimType": "email"
   }
 ```

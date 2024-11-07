@@ -5,7 +5,7 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         /// <summary>
         /// Determines whether the user authentication via OpenId Connect is enabled.
         /// </summary>
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = false;
 
         /// <summary>
         /// Sets AuthenticationType value for OpenId Connect authentication provider.
@@ -50,6 +50,6 @@ namespace VirtoCommerce.OpenIdConnectModule.Core.Models
         /// <summary>
         /// The sorting order of the external sign-in provider.
         /// </summary>
-        public int Priority { get; set; }
+        public int Priority { get; set; } = 1;
     }
 }

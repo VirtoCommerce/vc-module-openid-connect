@@ -36,6 +36,15 @@ public class Module : IModule, IHasConfiguration
                     openIdConnectOptions =>
                     {
                         openIdConnectOptions.MapInboundClaims = false;
+
+                        openIdConnectOptions.Scope.Clear();
+                        if (!oidcSection.GetSection("Scope").Exists())
+                        {
+                            openIdConnectOptions.Scope.Add("openid");
+                            openIdConnectOptions.Scope.Add("profile");
+                            openIdConnectOptions.Scope.Add("email");
+                        }
+
                         oidcSection.Bind(openIdConnectOptions);
 
                         openIdConnectOptions.Events.OnRedirectToIdentityProvider = context =>

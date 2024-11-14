@@ -4,16 +4,15 @@
   <version>3.800.0</version>
   <version-tag></version-tag>
 
-  <platformVersion>3.849.0</platformVersion>
-  <dependencies>
-    <!--<dependency id="VirtoCommerce.Core" version="3.800.0" />-->
-  </dependencies>
+  <platformVersion>3.865.0</platformVersion>
+  <dependencies />
 
   <title>VirtoCommerce OpenIdConnect module</title>
   <description>VirtoCommerce OpenId Connect module</description>
 
   <authors>
     <author>Igoris Berniukevicius</author>
+    <author>Artem Dudarev</author>
   </authors>
   <owners>
     <owner>VirtoCommerce</owner>

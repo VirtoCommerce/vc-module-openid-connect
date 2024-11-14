@@ -14,9 +14,7 @@
     <None Remove="Scripts\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AspNet.Security.OpenIdConnect.Primitives" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.0" />
-    <PackageReference Include="OpenIddict.AspNetCore" Version="4.10.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.8" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VirtoCommerce.OpenIdConnectModule.Core\VirtoCommerce.OpenIdConnectModule.Core.csproj" />

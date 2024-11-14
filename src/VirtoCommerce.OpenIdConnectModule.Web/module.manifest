@@ -4,7 +4,7 @@
   <version>3.800.0</version>
   <version-tag></version-tag>
 
-  <platformVersion>3.862.0-alpha.13044-sso2</platformVersion>
+  <platformVersion>3.865.0</platformVersion>
   <dependencies />
 
   <title>VirtoCommerce OpenIdConnect module</title>

@@ -7,7 +7,7 @@
     <SonarQubeTestProject>false</SonarQubeTestProject>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="VirtoCommerce.Platform.Security" Version="3.862.0-alpha.13044-sso2" />
+    <PackageReference Include="VirtoCommerce.Platform.Security" Version="3.865.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VirtoCommerce.OpenIdConnectModule.Core\VirtoCommerce.OpenIdConnectModule.Core.csproj" />

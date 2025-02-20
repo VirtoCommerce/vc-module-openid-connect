@@ -64,8 +64,9 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
     "Authority": "https://accounts.google.com",
     "ClientId": "your-client-id",
     "ClientSecret": "your-client-secret",
-    "UserNameClaimType": "email"
-  }
+    "UserNameClaimType": "email",
+    "EndSessionEndpoint": "https://accounts.google.com/Logout"
+}
 ```
 
 ### Example settings for Microsoft
@@ -105,7 +106,8 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
       "ClientSecret": "your-client-secret",
       "UserNameClaimType": "email",
       "CallbackPath": "/signin-google",
-      "SignedOutCallbackPath": "/signout-google"
+      "SignedOutCallbackPath": "/signout-google",
+      "EndSessionEndpoint": "https://accounts.google.com/Logout"
     },
     {
       "Enabled": true,

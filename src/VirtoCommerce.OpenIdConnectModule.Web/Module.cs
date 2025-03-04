@@ -78,6 +78,17 @@ public class Module : IModule, IHasConfiguration
                         return Task.CompletedTask;
                     };
 
+                    openIdConnectOptions.Events.OnRedirectToIdentityProviderForSignOut = context =>
+                    {
+                        if (string.IsNullOrEmpty(context.ProtocolMessage.IssuerAddress) &&
+                            !string.IsNullOrEmpty(options.EndSessionEndpoint))
+                        {
+                            context.ProtocolMessage.IssuerAddress = options.EndSessionEndpoint;
+                        }
+
+                        return Task.CompletedTask;
+                    };
+
                     openIdConnectOptions.Events.OnAccessDenied = context =>
                     {
                         // Need a base URI (any) to work with relative URLs

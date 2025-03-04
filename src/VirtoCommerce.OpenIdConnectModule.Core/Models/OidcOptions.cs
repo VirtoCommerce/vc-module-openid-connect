@@ -56,4 +56,6 @@ public class OidcOptions
     /// URL of the logo for the OpenId Connect authentication provider.
     /// </summary>
     public string LogoUrl { get; set; } = "Modules/$(VirtoCommerce.OpenIdConnectModule)/Content/openid-icon.webp";
+
+    public string EndSessionEndpoint { get; set; }
 }

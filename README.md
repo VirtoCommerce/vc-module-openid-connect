@@ -1,5 +1,5 @@
-# OpenID Connect
-OpenID Connect is an identity module on top of the OAuth 2.0 protocol, allowing clients to verify the identity of end-users based on the authentication performed by an authorization server. It also provides basic user profile information.
+# Virto Commerce OpenID Connect Module
+The OpenID Connect module is an identity module on top of the OAuth 2.0 protocol, allowing clients to verify the identity of end-users based on the authentication performed by an authorization server. It also provides basic user profile information.
 
 ## Key Features
 * Authentication: Ensures secure user authentication and authorization.
@@ -121,6 +121,22 @@ The list of other parameters can be found in the [OpenIdConnectOptions](https://
     }
   ]
 ```
+
+## Documentation
+
+* [OpenID Connect module developer documentation](https://docs.virtocommerce.org/platform/developer-guide/Fundamentals/Security/authentication/oidc/#openid-connect)
+* [REST API](https://virtostart-demo-admin.govirto.com/docs/index.html?urls.primaryName=VirtoCommerce.OpenIdConnectModule)
+* [Configuration](https://docs.virtocommerce.org/platform/developer-guide/Configuration-Reference/appsettingsjson/#oidc)
+* [View on GitHub](https://github.com/VirtoCommerce/vc-module-openid-connect)
+
+## References
+
+* [Deployment](https://docs.virtocommerce.org/platform/developer-guide/Tutorials-and-How-tos/Tutorials/deploy-module-from-source-code/)
+* [Installation](https://docs.virtocommerce.org/platform/user-guide/modules-installation/)
+* [Home](https://virtocommerce.com)
+* [Community](https://www.virtocommerce.org)
+* [Download latest release](https://github.com/VirtoCommerce/vc-module-openid-connect/releases/latest)
+
 
 ## License
 Copyright (c) Virto Solutions LTD.  All rights reserved.

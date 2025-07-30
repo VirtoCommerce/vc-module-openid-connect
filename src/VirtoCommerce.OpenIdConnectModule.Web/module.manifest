@@ -7,8 +7,8 @@
   <platformVersion>3.865.0</platformVersion>
   <dependencies />
 
-  <title>VirtoCommerce OpenIdConnect module</title>
-  <description>VirtoCommerce OpenId Connect module</description>
+  <title>OpenID Connect</title>
+  <description>OpenID Connect is an identity module on top of the OAuth 2.0</description>
 
   <authors>
     <author>Igoris Berniukevicius</author>

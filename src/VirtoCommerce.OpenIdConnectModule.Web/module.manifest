@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <module>
   <id>VirtoCommerce.OpenIdConnectModule</id>
-  <version>3.803.0</version>
+  <version>3.1000.0</version>
   <version-tag></version-tag>
 
-  <platformVersion>3.865.0</platformVersion>
+  <platformVersion>3.1002.0</platformVersion>
   <dependencies />
 
   <title>OpenID Connect</title>
@@ -26,7 +26,7 @@
   <moduleType>VirtoCommerce.OpenIdConnectModule.Web.Module, VirtoCommerce.OpenIdConnectModule.Web</moduleType>
 
   <releaseNotes>First version.</releaseNotes>
-  <copyright>Copyright © 2024 VirtoCommerce. All rights reserved</copyright>
+  <copyright>Copyright © 2024-2026 VirtoCommerce. All rights reserved</copyright>
   <tags>extension module</tags>
   <useFullTypeNameInSwagger>false</useFullTypeNameInSwagger>
 </module>

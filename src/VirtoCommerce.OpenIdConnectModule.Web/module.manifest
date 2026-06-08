@@ -19,7 +19,7 @@
   </owners>
 
   <projectUrl>https://github.com/VirtoCommerce/vc-module-openid-connect</projectUrl>
-  <iconUrl>Modules/$(VirtoCommerce.OpenIdConnectModule)/Content/logo.png</iconUrl>
+  <iconUrl>Modules/$(VirtoCommerce.OpenIdConnectModule)/Content/logo.svg</iconUrl>
   <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
   <assemblyFile>VirtoCommerce.OpenIdConnectModule.Web.dll</assemblyFile>
